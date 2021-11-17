@@ -10,7 +10,7 @@ namespace FizzBuzz
             List<string> stack = new List<string>();
             int firstB = -1;
 
-            static int registerFirst(int oldFirst,int n)
+            static int RegisterFirst(int oldFirst,int n)
             {
                 if (oldFirst == -1)
                 {
@@ -32,15 +32,15 @@ namespace FizzBuzz
                             oldStack.Add("Fizz");
                             break;
                         case 5:
-                            firstB = registerFirst(firstB,n);
+                            firstB = RegisterFirst(firstB,n);
                             oldStack.Add("Buzz");
                             break;
                         case 7:
-                            firstB = registerFirst(firstB,n);
+                            firstB = RegisterFirst(firstB,n);
                             oldStack.Add("Bang");
                             break;
                         case 11:
-                            firstB = registerFirst(firstB,n);
+                            firstB = RegisterFirst(firstB,n);
                             oldStack.Clear();
                             oldStack.Add("Bong");
                             break;
