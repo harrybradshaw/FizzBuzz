@@ -10,19 +10,17 @@ namespace FizzBuzz
             List<string> stack = new List<string>();
             int firstB = -1;
 
-            static int RegisterFirst(int oldFirst,int n)
+            static int RegisterFirst(int firstB, int n)
             {
-                if (oldFirst == -1)
+                if (firstB == -1)
                 {
-                    return n;
+                    firstB = n;
                 }
-                else
-                {
-                    return oldFirst;
-                }
+
+                return firstB;
             }
 
-            static List<string> ModifyStack(List<string> oldStack, int i, int n, int firstB = -1)
+            static int ModifyStack(List<string> oldStack, int i, int n, int firstB = -1)
             {
                 if (i % n == 0)
                 {
@@ -32,17 +30,17 @@ namespace FizzBuzz
                             oldStack.Add("Fizz");
                             break;
                         case 5:
-                            firstB = RegisterFirst(firstB,n);
                             oldStack.Add("Buzz");
+                            firstB = RegisterFirst(firstB,oldStack.Count);
                             break;
                         case 7:
-                            firstB = RegisterFirst(firstB,n);
                             oldStack.Add("Bang");
+                            firstB = RegisterFirst(firstB,oldStack.Count);
                             break;
                         case 11:
-                            firstB = RegisterFirst(firstB,n);
                             oldStack.Clear();
                             oldStack.Add("Bong");
+                            firstB = RegisterFirst(firstB,oldStack.Count);
                             break;
                         case 13:
                             if (firstB != -1)
@@ -59,18 +57,18 @@ namespace FizzBuzz
                             break;
                     }
                 }
-                return oldStack;
+                return firstB;
             }
 
             for(int i = 1; i < 301; i++)
             {
                 stack.Clear();
-                ModifyStack(stack, i, 3);
-                ModifyStack(stack, i, 5, firstB);
-                ModifyStack(stack, i, 7, firstB);
-                ModifyStack(stack, i, 11, firstB);
-                ModifyStack(stack, i, 13, firstB);
-                ModifyStack(stack, i, 17);
+                firstB = ModifyStack(stack, i, 3);
+                firstB = ModifyStack(stack, i, 5, firstB);
+                firstB = ModifyStack(stack, i, 7, firstB);
+                firstB = ModifyStack(stack, i, 11, firstB);
+                firstB = ModifyStack(stack, i, 13, firstB);
+                firstB = ModifyStack(stack, i, 17);
                 
                 if (stack.Count != 0)
                 {
