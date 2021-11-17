@@ -9,6 +9,11 @@ namespace FizzBuzz
         {
             List<string> stack = new List<string>();
             int firstB = -1;
+            
+            Console.WriteLine("How much FizzBuzzing do you want?");
+            string input = Console.ReadLine();
+            int intMaxIndex = 0;
+            Int32.TryParse(input, out intMaxIndex);
 
             static int RegisterFirst(int firstB, int n)
             {
@@ -60,7 +65,7 @@ namespace FizzBuzz
                 return firstB;
             }
 
-            for(int i = 1; i < 301; i++)
+            for(int i = 1; i < intMaxIndex; i++)
             {
                 stack.Clear();
                 firstB = ModifyStack(stack, i, 3);
