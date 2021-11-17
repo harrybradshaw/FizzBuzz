@@ -5,13 +5,12 @@ namespace FizzBuzz
 {
     class Program
     {
-        static string ComputeOutput(int i)
+        static string ComputeOutput(int i, int[] nums)
         {
             string tempString = "";
             List<string> stack = new List<string>();
             int firstB = -1;
-            int[] nums = {3, 5, 7, 11, 13, 17};
-            
+
             void UpdateFirst()
             {
                 if (firstB == -1)
@@ -66,16 +65,12 @@ namespace FizzBuzz
 
             if (stack.Count > 0)
             {
-                foreach (var item in stack)
-                {
-                    tempString += item;
-                }
+                tempString = String.Join("",stack);
             }
             else
             {
                 tempString = i.ToString();
             }
-            
             return tempString;
         }
         
@@ -86,10 +81,21 @@ namespace FizzBuzz
             int intMaxIndex = 0;
             Int32.TryParse(input, out intMaxIndex);
             
-            string output = "";
+            Console.WriteLine("Select the rules to use as a comma seperated list! (eg. 3,5,7)");
+            Console.WriteLine("3: Fizz");
+            Console.WriteLine("5: Buzz");
+            Console.WriteLine("7: Bang");
+            Console.WriteLine("11: Bong");
+            Console.WriteLine("13: Fezz");
+            Console.WriteLine("17: Reverse");
+            
+            string rulesInput = Console.ReadLine();
+            string[] rulesStrings = rulesInput.Split(',');
+            int[] nums = Array.ConvertAll(rulesStrings, int.Parse);
+            
             for(int i = 1; i < intMaxIndex; i++)
             {
-                output = ComputeOutput(i);
+                string output = ComputeOutput(i,nums);
                 Console.WriteLine(output);
             }
         }
