@@ -22,7 +22,7 @@ namespace FizzBuzz
                 }
             }
 
-            static List<string> ModifyStack(List<string> oldStack, int i, int n, int firstB)
+            static List<string> ModifyStack(List<string> oldStack, int i, int n, int firstB = -1)
             {
                 if (i % n == 0)
                 {
@@ -54,19 +54,23 @@ namespace FizzBuzz
                                 oldStack.Add("Fezz");
                             }
                             break;
+                        case 17:
+                            oldStack.Reverse();
+                            break;
                     }
                 }
                 return oldStack;
             }
 
-            for(int i = 1; i < 201; i++)
+            for(int i = 1; i < 301; i++)
             {
                 stack.Clear();
-                ModifyStack(stack, i, 3, firstB);
+                ModifyStack(stack, i, 3);
                 ModifyStack(stack, i, 5, firstB);
                 ModifyStack(stack, i, 7, firstB);
                 ModifyStack(stack, i, 11, firstB);
                 ModifyStack(stack, i, 13, firstB);
+                ModifyStack(stack, i, 17);
                 
                 if (stack.Count != 0)
                 {
