@@ -9,30 +9,38 @@ namespace FizzBuzz
         {
             List<string> stack = new List<string>();
             int FirstB = -1;
-            
+
+            static List<string> ModifyStack(List<string> oldStack, int i,int n)
+            {
+                if (i % n == 0)
+                {
+                    switch (n)
+                    {
+                        case 3:
+                            oldStack.Add("Fizz");
+                            break;
+                        case 5:
+                            oldStack.Add("Buzz");
+                            break;
+                        case 7:
+                            oldStack.Add("Bang");
+                            break;
+                        case 11:
+                            oldStack.Clear();
+                            oldStack.Add("Bong");
+                            break;
+                    }
+                }
+                return oldStack;
+            }
+
             for(int i = 1; i < 101; i++)
             {
                 stack.Clear();
-                if (i % 3 == 0)
-                {
-                    stack.Add("Fizz");
-                }
-
-                if (i % 5 == 0)
-                {
-                    stack.Add("Buzz");
-                }
-
-                if (i % 7 == 0)
-                {
-                    stack.Add("Bang");
-                }
-
-                if (i % 11 == 0)
-                {
-                    stack.Clear();
-                    stack.Add("Bong");
-                }
+                ModifyStack(stack, i, 3);
+                ModifyStack(stack, i, 5);
+                ModifyStack(stack, i, 7);
+                ModifyStack(stack, i, 11);
                 
                 if (stack.Count != 0)
                 {
