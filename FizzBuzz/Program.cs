@@ -19,6 +19,16 @@ namespace FizzBuzz
                     s += "Buzz";
                 }
 
+                if (i % 7 == 0)
+                {
+                    s += "Bang";
+                }
+
+                if (i % 11 == 0)
+                {
+                    s = "Bong";
+                }
+                
                 if (s.Length != 0)
                 {
                     Console.WriteLine(s);
