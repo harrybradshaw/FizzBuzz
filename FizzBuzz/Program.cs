@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FizzBuzz
 {
@@ -6,32 +7,40 @@ namespace FizzBuzz
     {
         static void Main(string[] args)
         {
+            List<string> stack = new List<string>();
+            
             for(int i = 1; i < 101; i++)
             {
-                string s = "";
+                stack.Clear();
                 if (i % 3 == 0)
                 {
-                    s += "Fizz";
+                    stack.Add("Fizz");
                 }
 
                 if (i % 5 == 0)
                 {
-                    s += "Buzz";
+                    stack.Add("Buzz");
                 }
 
                 if (i % 7 == 0)
                 {
-                    s += "Bang";
+                    stack.Add("Bang");
                 }
 
                 if (i % 11 == 0)
                 {
-                    s = "Bong";
+                    stack.Clear();
+                    stack.Add("Bong");
                 }
                 
-                if (s.Length != 0)
+                if (stack.Count != 0)
                 {
-                    Console.WriteLine(s);
+                    string tempString = "";
+                    foreach (string item in stack)
+                    {
+                        tempString += item;
+                    }
+                    Console.WriteLine(tempString);
                 }
                 else
                 {
