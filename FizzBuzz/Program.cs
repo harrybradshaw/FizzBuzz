@@ -8,6 +8,7 @@ namespace FizzBuzz
         static void Main(string[] args)
         {
             List<string> stack = new List<string>();
+            int FirstB = -1;
             
             for(int i = 1; i < 101; i++)
             {
