@@ -5,89 +5,92 @@ namespace FizzBuzz
 {
     class Program
     {
-        static void Main(string[] args)
+        static string ComputeOutput(int i)
         {
+            string tempString = "";
             List<string> stack = new List<string>();
             int firstB = -1;
+            int[] nums = {3, 5, 7, 11, 13, 17};
             
-            Console.WriteLine("How much FizzBuzzing do you want?");
-            string input = Console.ReadLine();
-            int intMaxIndex = 0;
-            Int32.TryParse(input, out intMaxIndex);
-
-            static int RegisterFirst(int firstB, int n)
+            void UpdateFirst()
             {
                 if (firstB == -1)
                 {
-                    firstB = n;
+                    firstB = stack.Count;
                 }
-
-                return firstB;
             }
-
-            static int ModifyStack(List<string> oldStack, int i, int n, int firstB = -1)
+            
+            void ModifyStack(int n)
             {
                 if (i % n == 0)
                 {
                     switch (n)
                     {
                         case 3:
-                            oldStack.Add("Fizz");
+                            stack.Add("Fizz");
                             break;
                         case 5:
-                            oldStack.Add("Buzz");
-                            firstB = RegisterFirst(firstB,oldStack.Count);
+                            stack.Add("Buzz");
+                            UpdateFirst();
                             break;
                         case 7:
-                            oldStack.Add("Bang");
-                            firstB = RegisterFirst(firstB,oldStack.Count);
+                            stack.Add("Bang");
+                            UpdateFirst();
                             break;
                         case 11:
-                            oldStack.Clear();
-                            oldStack.Add("Bong");
-                            firstB = RegisterFirst(firstB,oldStack.Count);
+                            stack.Clear();
+                            stack.Add("Bong");
+                            UpdateFirst();
                             break;
                         case 13:
                             if (firstB != -1)
                             {
-                                oldStack.Insert(firstB-1,"Fezz");
+                                stack.Insert(firstB-1,"Fezz");
                             }
                             else
                             {
-                                oldStack.Add("Fezz");
+                                stack.Add("Fezz");
                             }
                             break;
                         case 17:
-                            oldStack.Reverse();
+                            stack.Reverse();
                             break;
                     }
                 }
-                return firstB;
+            }
+            
+            foreach (int n in nums)
+            {
+                ModifyStack(n);
             }
 
+            if (stack.Count > 0)
+            {
+                foreach (var item in stack)
+                {
+                    tempString += item;
+                }
+            }
+            else
+            {
+                tempString = i.ToString();
+            }
+            
+            return tempString;
+        }
+        
+        static void Main(string[] args)
+        {
+            Console.WriteLine("How much FizzBuzzing do you want?");
+            string input = Console.ReadLine();
+            int intMaxIndex = 0;
+            Int32.TryParse(input, out intMaxIndex);
+            
+            string output = "";
             for(int i = 1; i < intMaxIndex; i++)
             {
-                stack.Clear();
-                firstB = ModifyStack(stack, i, 3);
-                firstB = ModifyStack(stack, i, 5, firstB);
-                firstB = ModifyStack(stack, i, 7, firstB);
-                firstB = ModifyStack(stack, i, 11, firstB);
-                firstB = ModifyStack(stack, i, 13, firstB);
-                firstB = ModifyStack(stack, i, 17);
-                
-                if (stack.Count != 0)
-                {
-                    string tempString = "";
-                    foreach (string item in stack)
-                    {
-                        tempString += item;
-                    }
-                    Console.WriteLine(tempString);
-                }
-                else
-                {
-                    Console.WriteLine(i);
-                }
+                output = ComputeOutput(i);
+                Console.WriteLine(output);
             }
         }
     }
