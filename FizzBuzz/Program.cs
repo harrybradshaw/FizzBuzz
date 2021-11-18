@@ -88,10 +88,10 @@ namespace FizzBuzz
     { 
         static void Main(string[] args)
         {
+            /*
             Console.WriteLine("How much FizzBuzzing do you want?");
             string input = Console.ReadLine();
-            int intMaxIndex = 0;
-            Int32.TryParse(input, out intMaxIndex);
+            Int32.TryParse(input, out int intMaxIndex);
             
             Console.WriteLine("Select the rules to use as a comma seperated list! (eg. 3,5,7)");
             Console.WriteLine("3: Fizz");
@@ -104,7 +104,8 @@ namespace FizzBuzz
             //string rulesInput = Console.ReadLine();
             //string[] rulesStrings = rulesInput.Split(',');
             //int[] nums = Array.ConvertAll(rulesStrings, int.Parse);
-
+            */
+            
             var fizzbuzzer = new FizzBuzzed();
             foreach (var value in fizzbuzzer)
             {
